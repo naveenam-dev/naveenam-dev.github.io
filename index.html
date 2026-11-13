@@ -154,6 +154,8 @@
     .cap p { color: var(--muted); font-size: 15px; }
 
     /* ============ 8b. ABOUT ============ */
+    #about { padding: 88px 0 0; }
+    #about + .hero { padding-top: 88px; }
     .about { display: grid; grid-template-columns: 240px 1fr; gap: 56px; align-items: center; }
     .about img {
       width: 240px; height: 240px; border-radius: 50%; object-fit: cover;
@@ -201,6 +203,8 @@
       .caps { grid-template-columns: 1fr; }
       .about { grid-template-columns: 1fr; gap: 32px; }
       .about img { width: 160px; height: 160px; }
+      #about { padding-top: 56px; }
+      #about + .hero { padding-top: 64px; }
       section { padding: 72px 0; }
     }
   </style>
@@ -212,9 +216,9 @@
     <div class="container">
       <a href="#" class="logo">Naveen<span>.</span></a>
       <div class="nav-links" id="nav-links">
+        <a href="#about">About</a>
         <a href="#work">Work</a>
         <a href="#approach">Approach</a>
-        <a href="#about">About</a>
         <a href="#track-record">Track record</a>
         <a href="#contact">Contact</a>
       </div>
@@ -242,10 +246,26 @@
     })();
   </script>
 
+  <!-- ===================== ABOUT ===================== -->
+  <section id="about">
+    <div class="container about">
+      <img src="images/naveen.webp" alt="Naveen Narayanan" width="480" height="480" />
+      <div>
+        <p class="eyebrow">About</p>
+        <h2 class="section-title">Hi, I'm Naveen Narayanan.</h2>
+        <dl>
+          <div><dt>Background</dt><dd>AI/ML engineer, cloud architect and technical co-founder, specialising in autonomous multi-agent mesh infrastructure and offline-first RAG pipelines.</dd></div>
+          <div><dt>Why</dt><dd>I'm driven by hard architectural problems in sovereign and air-gapped environments, where reliability, low latency and data privacy are non-negotiable.</dd></div>
+          <div><dt>Mission</dt><dd>Pushing autonomous multi-agent orchestration forward to build systems that think, coordinate and execute seamlessly at the edge.</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
   <!-- ===================== HERO ===================== -->
   <header class="hero">
     <div class="container">
-      <p class="eyebrow">Agentic AI · Bengaluru</p>
+      <p class="eyebrow">Founder &amp; Builder · Agentic AI</p>
       <h1>I build AI systems that <em>act</em>, not just answer.</h1>
       <p>
         Multi-agent platforms that investigate, decide under policy and take real actions,
@@ -261,7 +281,7 @@
       <div class="metrics">
         <div class="metric"><strong>4</strong><span>Agentic systems built end-to-end</span></div>
         <div class="metric"><strong>74%</strong><span>Disputes auto-resolved by Sahay AI (simulation)</span></div>
-        <div class="metric"><strong>6</strong><span>National AI hackathons in 2026</span></div>
+        <div class="metric"><strong>5</strong><span>National AI hackathons in 2026</span></div>
         <div class="metric"><strong>4+</strong><span>Indian languages by voice and chat</span></div>
       </div>
     </div>
@@ -279,7 +299,31 @@
 
       <div class="projects">
 
-        <!-- PROJECT 1: Sahay AI -->
+        <!-- PROJECT: Aegis Arena -->
+        <article class="project">
+          <figure class="shot">
+            <div class="bar"><i></i><i></i><i></i></div>
+            <img src="images/aegis.webp" alt="Aegis Arena stadium command dashboard with crowd density map and agent console" loading="lazy" width="1600" height="1000" />
+          </figure>
+          <div>
+            <span class="tag">Smart venues · Agentic Premier League Grand Finale</span>
+            <h3>Aegis Arena</h3>
+            <p class="sub">A real-time command platform for stadium crowd safety, bottlenecks and incidents.</p>
+            <div class="stack">
+              <span>Python</span><span>FastAPI</span><span>Multi-agent event bus</span><span>WebSockets</span><span>React</span>
+            </div>
+            <div class="links">
+              <a class="btn btn-ghost" href="https://github.com/naveenam-dev/google-apl-grand-finale" target="_blank" rel="noopener">View code</a>
+            </div>
+          </div>
+          <dl>
+            <div><dt>Problem</dt><dd>Exit surges and security incidents at large venues build up faster than control rooms can react.</dd></div>
+            <div><dt>Solution</dt><dd>A decentralised mesh of Gate, Routing and Safety agents predicts surges, reroutes crowds through signage and app alerts, and dispatches responders with live ETAs.</dd></div>
+            <div><dt>Interface</dt><dd>A live stadium map with heatmaps, gate status, responder movement and a console that shows each agent's reasoning.</dd></div>
+          </dl>
+        </article>
+
+        <!-- PROJECT: Sahay AI -->
         <article class="project">
           <figure class="shot">
             <div class="bar"><i></i><i></i><i></i></div>
@@ -331,30 +375,6 @@
             <div><dt>Problem</dt><dd>During an outage, engineers waste critical minutes digging through runbooks, Slack, Jira and email, and can't always see what they're allowed to touch.</dd></div>
             <div><dt>Solution</dt><dd>An agent runs role-filtered hybrid search plus live telemetry and org-graph lookups, then produces a cited procedure with actions the engineer can approve in one click.</dd></div>
             <div><dt>Why it's safe</dt><dd>Access control runs inside the retrieval query, a grounding guard verifies every citation, and nothing executes without human approval.</dd></div>
-          </dl>
-        </article>
-
-        <!-- PROJECT 3: Aegis Arena -->
-        <article class="project">
-          <figure class="shot">
-            <div class="bar"><i></i><i></i><i></i></div>
-            <img src="images/aegis.webp" alt="Aegis Arena stadium command dashboard with crowd density map and agent console" loading="lazy" width="1600" height="1000" />
-          </figure>
-          <div>
-            <span class="tag">Smart venues · Agentic Premier League Grand Finale</span>
-            <h3>Aegis Arena</h3>
-            <p class="sub">A real-time command platform for stadium crowd safety, bottlenecks and incidents.</p>
-            <div class="stack">
-              <span>Python</span><span>FastAPI</span><span>Multi-agent event bus</span><span>WebSockets</span><span>React</span>
-            </div>
-            <div class="links">
-              <a class="btn btn-ghost" href="https://github.com/naveenam-dev/google-apl-grand-finale" target="_blank" rel="noopener">View code</a>
-            </div>
-          </div>
-          <dl>
-            <div><dt>Problem</dt><dd>Exit surges and security incidents at large venues build up faster than control rooms can react.</dd></div>
-            <div><dt>Solution</dt><dd>A decentralised mesh of Gate, Routing and Safety agents predicts surges, reroutes crowds through signage and app alerts, and dispatches responders with live ETAs.</dd></div>
-            <div><dt>Interface</dt><dd>A live stadium map with heatmaps, gate status, responder movement and a console that shows each agent's reasoning.</dd></div>
           </dl>
         </article>
 
@@ -421,22 +441,6 @@
     </div>
   </section>
 
-  <!-- ===================== ABOUT ===================== -->
-  <section id="about">
-    <div class="container about">
-      <img src="images/naveen.webp" alt="Naveen Narayanan" width="480" height="480" loading="lazy" />
-      <div>
-        <p class="eyebrow">About</p>
-        <h2 class="section-title">Hi, I'm Naveen Narayanan.</h2>
-        <dl>
-          <div><dt>Background</dt><dd>AI/ML engineer, cloud architect and technical co-founder, specialising in autonomous multi-agent mesh infrastructure and offline-first RAG pipelines.</dd></div>
-          <div><dt>Why</dt><dd>I'm driven by hard architectural problems in sovereign and air-gapped environments, where reliability, low latency and data privacy are non-negotiable.</dd></div>
-          <div><dt>Mission</dt><dd>Pushing autonomous multi-agent orchestration forward to build systems that think, coordinate and execute seamlessly at the edge.</dd></div>
-        </dl>
-      </div>
-    </div>
-  </section>
-
   <!-- ===================== TRACK RECORD ===================== -->
   <!-- Add dates and placements you can verify. Newest first. -->
   <section id="track-record">
@@ -458,11 +462,6 @@
           <time>2026</time>
           <h3>Google Cloud Builder Pop-Up Hackathon</h3>
           <p>Built Aura Café</p>
-        </div>
-        <div class="t-item">
-          <time>Jul 2026</time>
-          <h3>India Agentic AI Open Hackathon</h3>
-          <p>NVIDIA, OpenACC and gnani.ai · Track A: Multi-Agent Workflows · CityFlow AI, a smart-city traffic orchestration system</p>
         </div>
         <div class="t-item">
           <time>May 2026</time>
