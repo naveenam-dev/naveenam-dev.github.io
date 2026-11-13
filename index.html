@@ -4,14 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- SEO + social preview (Step 7). Update the URL once deployed. -->
-  <title>Naveen — Agentic AI Builder</title>
-  <meta name="description" content="Naveen builds production-grade agentic AI systems: multi-agent orchestration, grounded retrieval, and voice AI for Indian languages." />
-  <meta property="og:title" content="Naveen — Agentic AI Builder" />
-  <meta property="og:description" content="Multi-agent systems that act, not just answer. Four shipped products across fintech, enterprise ops, smart venues and hospitality." />
+  <!-- SEO + social preview -->
+  <title>Naveen Narayanan — Agentic AI Builder</title>
+  <meta name="description" content="Naveen Narayanan builds agentic AI systems: multi-agent orchestration, grounded retrieval, and voice AI for Indian languages." />
+  <meta property="og:title" content="Naveen Narayanan — Agentic AI Builder" />
+  <meta property="og:description" content="Multi-agent systems that act, not just answer. Four working agentic systems across fintech, enterprise ops, smart venues and hospitality." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://naveenamai.dev/" />
+  <meta property="og:image" content="https://naveenamai.dev/images/og-card.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Sahay AI console resolving a payment dispute with agent reasoning and policy checks" />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="canonical" href="https://naveenamai.dev/" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 
   <!-- Fonts: Inter for body, Fraunces for headings (serif = credible, investor-friendly) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -66,6 +72,11 @@
     .logo span { color: var(--accent); }
     .nav-links { display: flex; gap: 28px; font-size: 15px; color: var(--muted); }
     .nav-links a:hover { color: var(--text); }
+    .nav-right { display: flex; align-items: center; gap: 10px; }
+    .menu-btn {
+      display: none; background: none; border: 1px solid var(--border); border-radius: 10px;
+      color: var(--text); width: 44px; height: 44px; font-size: 20px; cursor: pointer;
+    }
 
     /* ============ 4. BUTTONS ============ */
     .btn {
@@ -142,6 +153,16 @@
     .cap h3 { font-size: 20px; margin-bottom: 10px; }
     .cap p { color: var(--muted); font-size: 15px; }
 
+    /* ============ 8b. ABOUT ============ */
+    .about { display: grid; grid-template-columns: 240px 1fr; gap: 56px; align-items: center; }
+    .about img {
+      width: 240px; height: 240px; border-radius: 50%; object-fit: cover;
+      border: 3px solid var(--border);
+    }
+    .about dl { display: grid; gap: 20px; margin-top: 28px; }
+    .about dt { font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
+    .about dd { color: var(--muted); font-size: 17px; }
+
     /* ============ 9. TIMELINE ============ */
     .timeline { margin-top: 48px; border-left: 2px solid var(--border); padding-left: 28px; display: grid; gap: 32px; }
     .t-item { position: relative; }
@@ -165,12 +186,21 @@
 
     /* ============ 11. MOBILE ============ */
     @media (max-width: 860px) {
-      .nav-links { display: none; }
+      .menu-btn { display: inline-block; }
+      .nav-links {
+        display: none; position: absolute; top: 64px; left: 0; right: 0;
+        flex-direction: column; gap: 0; background: var(--bg);
+        border-bottom: 1px solid var(--border);
+      }
+      .nav-links a { padding: 14px 24px; border-top: 1px solid var(--border); }
+      nav.open .nav-links { display: flex; }
       .metrics { grid-template-columns: repeat(2, 1fr); }
       .metric:nth-child(2) { border-right: none; }
       .metric:nth-child(-n+2) { border-bottom: 1px solid var(--border); }
       .project { grid-template-columns: 1fr; padding: 28px; gap: 24px; }
       .caps { grid-template-columns: 1fr; }
+      .about { grid-template-columns: 1fr; gap: 32px; }
+      .about img { width: 160px; height: 160px; }
       section { padding: 72px 0; }
     }
   </style>
@@ -181,15 +211,36 @@
   <nav>
     <div class="container">
       <a href="#" class="logo">Naveen<span>.</span></a>
-      <div class="nav-links">
+      <div class="nav-links" id="nav-links">
         <a href="#work">Work</a>
         <a href="#approach">Approach</a>
+        <a href="#about">About</a>
         <a href="#track-record">Track record</a>
         <a href="#contact">Contact</a>
       </div>
-      <a href="#contact" class="btn btn-primary">Get in touch</a>
+      <div class="nav-right">
+        <a href="#contact" class="btn btn-primary">Get in touch</a>
+        <button class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">☰</button>
+      </div>
     </div>
   </nav>
+  <script>
+    // Mobile menu: toggle open, close after a link is tapped
+    (function () {
+      var nav = document.querySelector("nav");
+      var btn = nav.querySelector(".menu-btn");
+      function set(open) {
+        nav.classList.toggle("open", open);
+        btn.setAttribute("aria-expanded", open);
+        btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+        btn.textContent = open ? "✕" : "☰";
+      }
+      btn.addEventListener("click", function () { set(!nav.classList.contains("open")); });
+      nav.querySelectorAll(".nav-links a").forEach(function (a) {
+        a.addEventListener("click", function () { set(false); });
+      });
+    })();
+  </script>
 
   <!-- ===================== HERO ===================== -->
   <header class="hero">
@@ -198,19 +249,19 @@
       <h1>I build AI systems that <em>act</em>, not just answer.</h1>
       <p>
         Multi-agent platforms that investigate, decide under policy and take real actions,
-        with humans in the loop where it matters. Four working products shipped across
-        fintech, enterprise operations, live venues and hospitality.
+        with humans in the loop where it matters. Four working agentic systems built at
+        national AI hackathons, across fintech, enterprise operations, live venues and hospitality.
       </p>
       <div class="hero-cta">
         <a href="#work" class="btn btn-primary">See the work →</a>
-        <a href="https://github.com/naveenam-dev" target="_blank" class="btn btn-ghost">GitHub</a>
+        <a href="https://github.com/naveenam-dev" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
       </div>
 
       <!-- Headline numbers: keep only claims you can back up -->
       <div class="metrics">
-        <div class="metric"><strong>4</strong><span>Agentic products built end-to-end</span></div>
+        <div class="metric"><strong>4</strong><span>Agentic systems built end-to-end</span></div>
         <div class="metric"><strong>74%</strong><span>Disputes auto-resolved by Sahay AI (simulation)</span></div>
-        <div class="metric"><strong>−80.7%</strong><span>Estimated cost per support ticket</span></div>
+        <div class="metric"><strong>6</strong><span>National AI hackathons in 2026</span></div>
         <div class="metric"><strong>4+</strong><span>Indian languages by voice and chat</span></div>
       </div>
     </div>
@@ -220,10 +271,10 @@
   <section id="work">
     <div class="container">
       <p class="eyebrow">Selected work</p>
-      <h2 class="section-title">Products, not demos.</h2>
+      <h2 class="section-title">Real problems, working systems.</h2>
       <p class="section-lead">
-        Each project starts with a costly real-world problem and ends with a working system:
-        a live deployment, a test suite and measurable outcomes.
+        Each project starts with a costly real-world problem and ends with a working system,
+        built under hackathon deadlines, with test suites and measured outcomes.
       </p>
 
       <div class="projects">
@@ -247,7 +298,7 @@
               <span>Python</span><span>FastAPI</span><span>Gemini</span><span>Sarvam AI</span><span>WebSockets</span><span>Docker</span>
             </div>
             <div class="links">
-              <a class="btn btn-ghost" href="https://github.com/naveenam-dev/PayTMSarvam" target="_blank">View code</a>
+              <a class="btn btn-ghost" href="https://github.com/naveenam-dev/PayTMSarvam" target="_blank" rel="noopener">View code</a>
             </div>
           </div>
           <dl>
@@ -271,8 +322,9 @@
               <span>Google ADK</span><span>Gemini on Vertex AI</span><span>AlloyDB + pgvector</span><span>Firestore</span><span>Cloud Run</span><span>React</span>
             </div>
             <div class="links">
-              <a class="btn btn-primary" href="https://aibuildercupprj.web.app" target="_blank">Live demo ↗</a>
-              <a class="btn btn-ghost" href="https://github.com/naveenam-dev/AIBuilderCupRepo" target="_blank">View code</a>
+              <a class="btn btn-primary" href="https://aibuildercupprj.web.app" target="_blank" rel="noopener">Live demo ↗</a>
+              <a class="btn btn-ghost" href="https://drive.google.com/file/d/1eXgTE6LdSWAHswGbyXVkkp-jz3Kdb57J/view" target="_blank" rel="noopener">▶ Watch demo</a>
+              <a class="btn btn-ghost" href="https://github.com/naveenam-dev/AIBuilderCupRepo" target="_blank" rel="noopener">View code</a>
             </div>
           </div>
           <dl>
@@ -296,7 +348,7 @@
               <span>Python</span><span>FastAPI</span><span>Multi-agent event bus</span><span>WebSockets</span><span>React</span>
             </div>
             <div class="links">
-              <a class="btn btn-ghost" href="https://github.com/naveenam-dev/google-apl-grand-finale" target="_blank">View code</a>
+              <a class="btn btn-ghost" href="https://github.com/naveenam-dev/google-apl-grand-finale" target="_blank" rel="noopener">View code</a>
             </div>
           </div>
           <dl>
@@ -320,7 +372,7 @@
               <span>Gemini</span><span>FastAPI</span><span>React</span><span>Web Speech API</span><span>Cloud Run</span>
             </div>
             <div class="links">
-              <a class="btn btn-ghost" href="https://github.com/naveenam-dev/CafeBuilderPopup" target="_blank">View code</a>
+              <a class="btn btn-ghost" href="https://github.com/naveenam-dev/CafeBuilderPopup" target="_blank" rel="noopener">View code</a>
             </div>
           </div>
           <dl>
@@ -365,6 +417,22 @@
           <h3>Cloud-native delivery</h3>
           <p>Containerised and deployed on Cloud Run and Firebase, with offline fallbacks and test suites included.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ABOUT ===================== -->
+  <section id="about">
+    <div class="container about">
+      <img src="images/naveen.webp" alt="Naveen Narayanan" width="480" height="480" loading="lazy" />
+      <div>
+        <p class="eyebrow">About</p>
+        <h2 class="section-title">Hi, I'm Naveen Narayanan.</h2>
+        <dl>
+          <div><dt>Background</dt><dd>AI/ML engineer, cloud architect and technical co-founder, specialising in autonomous multi-agent mesh infrastructure and offline-first RAG pipelines.</dd></div>
+          <div><dt>Why</dt><dd>I'm driven by hard architectural problems in sovereign and air-gapped environments, where reliability, low latency and data privacy are non-negotiable.</dd></div>
+          <div><dt>Mission</dt><dd>Pushing autonomous multi-agent orchestration forward to build systems that think, coordinate and execute seamlessly at the edge.</dd></div>
+        </dl>
       </div>
     </div>
   </section>
@@ -419,8 +487,8 @@
         <p>I'm open to conversations with investors, founders and partners about bringing these systems to market.</p>
         <div class="hero-cta">
           <a href="mailto:naveennaray@gmail.com" class="btn btn-primary">Email me</a>
-          <a href="https://www.linkedin.com/in/naveen-narayanan-b6930ab/" target="_blank" class="btn btn-ghost">LinkedIn</a>
-          <a href="https://github.com/naveenam-dev" target="_blank" class="btn btn-ghost">GitHub</a>
+          <a href="https://www.linkedin.com/in/naveen-narayanan-b6930ab/" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn</a>
+          <a href="https://github.com/naveenam-dev" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
         </div>
       </div>
     </div>
