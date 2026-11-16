@@ -17,197 +17,14 @@
   <meta property="og:image:alt" content="Sahay AI console resolving a payment dispute with agent reasoning and policy checks" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="canonical" href="https://naveenamai.dev/" />
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
 
   <!-- Fonts: Inter for body, Fraunces for headings (serif = credible, investor-friendly) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 
-  <style>
-    /* ============ 1. DESIGN TOKENS ============
-       Change colours here and the whole site follows. */
-    :root {
-      --bg: #0b0f17;
-      --surface: #121826;
-      --surface-2: #182033;
-      --border: #24304a;
-      --text: #e7ebf3;
-      --muted: #97a3ba;
-      --accent: #5b8cff;      /* primary blue */
-      --accent-2: #36d3a8;    /* success green for metrics */
-      --radius: 14px;
-      --max: 1120px;
-    }
-
-    /* ============ 2. BASE ============ */
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: "Inter", system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-    h1, h2, h3 { font-family: "Fraunces", Georgia, serif; font-weight: 600; line-height: 1.15; }
-    a { color: inherit; text-decoration: none; }
-    .container { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
-    section { padding: 96px 0; }
-    .eyebrow {
-      font-size: 13px; font-weight: 600; letter-spacing: .12em;
-      text-transform: uppercase; color: var(--accent); margin-bottom: 14px;
-    }
-    .section-title { font-size: clamp(28px, 4vw, 40px); margin-bottom: 16px; }
-    .section-lead { color: var(--muted); max-width: 640px; font-size: 18px; }
-
-    /* ============ 3. NAV ============ */
-    nav {
-      position: sticky; top: 0; z-index: 10;
-      background: rgba(11, 15, 23, .85); backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
-    }
-    nav .container { display: flex; align-items: center; justify-content: space-between; height: 64px; }
-    .logo { font-family: "Fraunces", serif; font-size: 20px; font-weight: 600; }
-    .logo span { color: var(--accent); }
-    .nav-links { display: flex; gap: 28px; font-size: 15px; color: var(--muted); }
-    .nav-links a:hover { color: var(--text); }
-    .nav-right { display: flex; align-items: center; gap: 10px; }
-    .menu-btn {
-      display: none; background: none; border: 1px solid var(--border); border-radius: 10px;
-      color: var(--text); width: 44px; height: 44px; font-size: 20px; cursor: pointer;
-    }
-
-    /* ============ 4. BUTTONS ============ */
-    .btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 12px 22px; border-radius: 10px; font-weight: 500; font-size: 15px;
-      border: 1px solid var(--border); transition: all .2s;
-    }
-    .btn-primary { background: var(--accent); border-color: var(--accent); color: #fff; }
-    .btn-primary:hover { background: #4677f0; }
-    .btn-ghost:hover { border-color: var(--muted); }
-
-    /* ============ 5. HERO ============ */
-    .hero { padding: 120px 0 80px; }
-    .hero h1 { font-size: clamp(40px, 6vw, 68px); max-width: 860px; margin-bottom: 24px; }
-    .hero h1 em { font-style: normal; color: var(--accent); }
-    .hero p { font-size: 20px; color: var(--muted); max-width: 640px; margin-bottom: 36px; }
-    .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
-
-    /* ============ 6. METRICS STRIP ============ */
-    .metrics {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      border: 1px solid var(--border); border-radius: var(--radius);
-      background: var(--surface); margin-top: 72px;
-    }
-    .metric { padding: 28px; border-right: 1px solid var(--border); }
-    .metric:last-child { border-right: none; }
-    .metric strong { display: block; font-family: "Fraunces", serif; font-size: 36px; color: var(--accent-2); }
-    .metric span { color: var(--muted); font-size: 14px; }
-
-    /* ============ 7. PROJECTS ============ */
-    .projects { display: grid; gap: 28px; margin-top: 56px; }
-    .project {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 40px;
-      transition: border-color .2s;
-    }
-    .project:hover { border-color: #3a4a70; }
-    .tag {
-      display: inline-block; font-size: 12px; font-weight: 600;
-      padding: 4px 10px; border-radius: 999px;
-      background: rgba(91, 140, 255, .12); color: var(--accent); margin-bottom: 14px;
-    }
-    .project h3 { font-size: 30px; margin-bottom: 6px; }
-    .project .sub { color: var(--muted); margin-bottom: 20px; }
-    .project dl { display: grid; gap: 14px; }
-    .project dt { font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
-    .project dd { font-size: 15px; }
-    .kpis { display: flex; gap: 24px; flex-wrap: wrap; margin: 22px 0; }
-    .kpis div strong { display: block; font-family: "Fraunces", serif; font-size: 26px; color: var(--accent-2); }
-    .kpis div span { font-size: 13px; color: var(--muted); }
-    .stack { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 24px; }
-    .stack span {
-      font-size: 13px; padding: 5px 10px; border-radius: 8px;
-      background: var(--surface-2); border: 1px solid var(--border); color: var(--muted);
-    }
-    .links { display: flex; gap: 10px; flex-wrap: wrap; }
-    .links .btn { padding: 9px 16px; font-size: 14px; }
-    .note { font-size: 12px; color: var(--muted); margin-top: 16px; }
-
-    /* Project screenshot: spans both columns, framed like a browser window */
-    .shot {
-      grid-column: 1 / -1;
-      border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
-      background: var(--surface-2);
-    }
-    .shot .bar { display: flex; gap: 6px; padding: 10px 14px; border-bottom: 1px solid var(--border); }
-    .shot .bar i { width: 10px; height: 10px; border-radius: 50%; background: var(--border); }
-    .shot img { display: block; width: 100%; height: auto; }
-
-    /* ============ 8. CAPABILITIES ============ */
-    .caps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px; }
-    .cap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; }
-    .cap h3 { font-size: 20px; margin-bottom: 10px; }
-    .cap p { color: var(--muted); font-size: 15px; }
-
-    /* ============ 8b. ABOUT ============ */
-    #about { padding: 88px 0 0; }
-    #about + .hero { padding-top: 88px; }
-    .about { display: grid; grid-template-columns: 240px 1fr; gap: 56px; align-items: center; }
-    .about img {
-      width: 240px; height: 240px; border-radius: 50%; object-fit: cover;
-      border: 3px solid var(--border);
-    }
-    .about dl { display: grid; gap: 20px; margin-top: 28px; }
-    .about dt { font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
-    .about dd { color: var(--muted); font-size: 17px; }
-
-    /* ============ 9. TIMELINE ============ */
-    .timeline { margin-top: 48px; border-left: 2px solid var(--border); padding-left: 28px; display: grid; gap: 32px; }
-    .t-item { position: relative; }
-    .t-item::before {
-      content: ""; position: absolute; left: -36px; top: 7px;
-      width: 14px; height: 14px; border-radius: 50%;
-      background: var(--bg); border: 3px solid var(--accent);
-    }
-    .t-item time { font-size: 13px; color: var(--accent); font-weight: 600; }
-    .t-item h3 { font-size: 20px; margin: 4px 0; }
-    .t-item p { color: var(--muted); font-size: 15px; }
-
-    /* ============ 10. CONTACT + FOOTER ============ */
-    .contact {
-      text-align: center; background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 72px 24px;
-    }
-    .contact p { color: var(--muted); max-width: 520px; margin: 0 auto 32px; font-size: 18px; }
-    .contact .hero-cta { justify-content: center; }
-    footer { padding: 40px 0; color: var(--muted); font-size: 14px; text-align: center; }
-
-    /* ============ 11. MOBILE ============ */
-    @media (max-width: 860px) {
-      .menu-btn { display: inline-block; }
-      .nav-links {
-        display: none; position: absolute; top: 64px; left: 0; right: 0;
-        flex-direction: column; gap: 0; background: var(--bg);
-        border-bottom: 1px solid var(--border);
-      }
-      .nav-links a { padding: 14px 24px; border-top: 1px solid var(--border); }
-      nav.open .nav-links { display: flex; }
-      .metrics { grid-template-columns: repeat(2, 1fr); }
-      .metric:nth-child(2) { border-right: none; }
-      .metric:nth-child(-n+2) { border-bottom: 1px solid var(--border); }
-      .project { grid-template-columns: 1fr; padding: 28px; gap: 24px; }
-      .caps { grid-template-columns: 1fr; }
-      .about { grid-template-columns: 1fr; gap: 32px; }
-      .about img { width: 160px; height: 160px; }
-      #about { padding-top: 56px; }
-      #about + .hero { padding-top: 64px; }
-      section { padding: 72px 0; }
-    }
-  </style>
+  <link rel="stylesheet" href="css/site.css" />
 </head>
 <body>
 
@@ -220,6 +37,8 @@
         <a href="#work">Work</a>
         <a href="#approach">Approach</a>
         <a href="#track-record">Track record</a>
+        <a href="#next">Building next</a>
+        <a href="blog/index.html">Writing</a>
         <a href="#contact">Contact</a>
       </div>
       <div class="nav-right">
@@ -228,23 +47,7 @@
       </div>
     </div>
   </nav>
-  <script>
-    // Mobile menu: toggle open, close after a link is tapped
-    (function () {
-      var nav = document.querySelector("nav");
-      var btn = nav.querySelector(".menu-btn");
-      function set(open) {
-        nav.classList.toggle("open", open);
-        btn.setAttribute("aria-expanded", open);
-        btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-        btn.textContent = open ? "✕" : "☰";
-      }
-      btn.addEventListener("click", function () { set(!nav.classList.contains("open")); });
-      nav.querySelectorAll(".nav-links a").forEach(function (a) {
-        a.addEventListener("click", function () { set(false); });
-      });
-    })();
-  </script>
+  <script src="js/site.js"></script>
 
   <!-- ===================== ABOUT ===================== -->
   <section id="about">
@@ -473,6 +276,40 @@
           <h3>AWS AI League, Bengaluru</h3>
           <p>Optimised an agent from BFS to heuristic A* pathfinding</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== BUILDING NEXT ===================== -->
+  <!-- Review this copy: replace anything that doesn't match your plan. -->
+  <section id="next">
+    <div class="container">
+      <p class="eyebrow">What I'm building next</p>
+      <h2 class="section-title">Sovereign agentic AI that runs where the data lives.</h2>
+      <p class="section-lead">
+        Most agentic AI assumes an always-on cloud and sends sensitive data to third-party models.
+        The organisations with the most to gain from it often can't use it at all.
+      </p>
+      <div class="caps">
+        <div class="cap">
+          <h3>The problem</h3>
+          <p>Banks, government, healthcare, defence and critical infrastructure work under strict data-residency and security rules. Public LLM APIs are off-limits, so they're locked out of agentic automation.</p>
+        </div>
+        <div class="cap">
+          <h3>The approach</h3>
+          <p>A multi-agent mesh with offline-first retrieval and locally hosted models, designed to run on-premise, air-gapped or at the edge. No data leaves the building.</p>
+        </div>
+        <div class="cap">
+          <h3>Built on what works</h3>
+          <p>The same guardrails already proven in my projects: deterministic policy checks, role-based retrieval, verified citations and human approval for high-stakes actions.</p>
+        </div>
+      </div>
+      <div class="ask">
+        <div>
+          <h3>I'm speaking with investors.</h3>
+          <p>If sovereign and edge AI is part of your thesis, I'd like to walk you through the plan.</p>
+        </div>
+        <a href="mailto:naveennaray@gmail.com?subject=Investing%20in%20sovereign%20agentic%20AI" class="btn btn-primary">Talk about investing →</a>
       </div>
     </div>
   </section>
